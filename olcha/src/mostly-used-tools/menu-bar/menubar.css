@@ -1,0 +1,233 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.controller_bar {
+    position: absolute;
+    width: 1990px;
+    height: 70px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.logo {
+    position: absolute;
+    width: 8%;
+    height: auto;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.search-engine{
+    top: 50%;
+    left: 300px;
+    border-radius: 25px;
+    position: absolute;
+    height: 40px;
+    width: 600px;
+    transform: translateY(-50%);
+    border-color: #8C8787;
+    color: #000000;
+    text-size-adjust: 100%;
+    border-style: solid;
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+.search-engine::placeholder {
+    color: #8c8787;
+    opacity: 1;
+    font-size: 15px;
+    line-height: 20px;
+    font-family: 'Arial', sans-serif;
+    left: 10px;
+}
+
+.search-engine-photo{
+    position: absolute;
+    width: 1.5%;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 860px;
+    cursor: pointer;
+}
+
+.menu-catalogue {
+    position: absolute;
+    top: 50%;
+    left: 1375px;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    transform: translateY(-50%);
+    color: #000000;
+    cursor: pointer;
+}
+
+.menu-offices {
+    position: absolute;
+    top: 50%;
+    left: 1480px;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    transform: translateY(-50%);
+    color: #000000;
+    cursor: pointer;
+}
+
+.menu-box {
+    position: absolute;
+    top: 50%;
+    left: 1565px;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    transform: translateY(-50%);
+    color: #000000;
+    cursor: pointer;
+}
+
+.menu-history {
+    position: absolute;
+    top: 50%;
+    left: 1623px;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    transform: translateY(-50%);
+    color: #000000;
+    cursor: pointer;
+}
+
+
+.mini-box-for-username-login-user-photo{
+    position: absolute;
+    top: 14px;
+    right: 25px;
+    width: 270px;
+    height: 63px;
+    border-radius: 1px;
+    /*border: 2px solid #8C8787;*/
+}
+
+.name{
+    position: absolute;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    top: 8px;
+    left: 60px;
+    color: #000000;
+    cursor: pointer;
+
+}
+.username{
+    position: absolute;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    top: 30px;
+    left: 60px;
+    color: #8c8787;
+    cursor: pointer;
+
+}
+.profile-settings{
+    width: 20%;
+    height: auto;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.mode-sun{
+    width: 2%;
+    height: auto;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    right: 260px;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+}
+.mode-night{}
+
+.language-selector{
+    position: absolute;
+    top: 50%;
+    left: 1500px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    height: 35px;
+}
+
+.location-word{
+    position: absolute;
+    width: 1%;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1610px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+}
+
+
+.location-photo{
+    width: 1.8%;
+    height: auto;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 1490px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
+.form-select {
+    min-width: 30px !important;
+    width: auto !important;
+    height: 40px;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 1407px !important;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: #D9D9D9 !important;
+    border-color: #D9D9D9 !important;
+}
+
+.city-select {
+    min-width: 80px !important;
+    width: auto !important;
+    height: 40px;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 1530px !important;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: #D9D9D9 !important;
+    border-color: #D9D9D9 !important;
+}
+
+
+.like{
+    width: 1.5%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 1435px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
