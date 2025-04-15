@@ -1,12 +1,13 @@
-// import MenuBar from "./../mostly-used-tools/menu-bar/menu-bar.tsx"
+import MenuBar from "./../mostly-used-tools/menu-bar/menu-bar.tsx"
 import user from "./../system-photos/menu-bar/azamatzakirovch.jpg"
+import "./user.css"
 
 function User() {
 
 
     return (
         <>
-            {/*<MenuBar />*/}
+            <MenuBar />
             <div>
                 <div className="mini-box-for-username-login-user-photo">
                     <div className="name">Azamat Zakirovch</div>
