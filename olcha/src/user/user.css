@@ -1,0 +1,221 @@
+.popular-goods-container {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    width: 890px;
+    height: 500px;
+    transform: translateX(-50%);
+    border: 4px solid #d6d4d4;
+    border-radius: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px 10px #cacaca;
+    overflow: hidden;
+}
+
+.photo-of-top-good{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+}
+
+.border-of-photo{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /*border: 3px solid #ff0000;*/
+    width: 480px;
+    height: 450px;
+}
+
+.the-name-of-top-good {
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+    font-size: 55px;
+    font-weight: bold;
+    line-height: 1.5;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.border-of-name-of-top-good{
+    position: absolute;
+    top: 108px;
+    left: 10px;
+    /*border: 3px solid #ff0000;*/
+    width: 370px;
+    height: 95px;
+}
+
+.the-description-of-top-good {
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+}
+
+.border-of-the-description-of-top-good{
+    position: absolute;
+    top: 200px;
+    left: 10px;
+    /*border: 3px solid #ff0000;*/
+    width: 370px;
+    height: 180px;
+}
+
+.the-old-price-of-the-good {
+    color: #939393;
+    font-family: 'Arial', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    position: absolute;
+    top: 400px;
+    left: 30px;
+    width: 300px;
+}
+
+.the-new-price-of-the-good {
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.5;
+    position: absolute;
+    top: 415px;
+    left: 30px;
+    width: 300px;
+}
+
+.like-btn{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 3.6%;
+    height: auto;
+    transition: transform 1s ease;
+
+}
+
+.like-btn:hover{
+    transform: scale(1.1);
+}
+
+.border-of-tool-for-filtering {
+    position: absolute;
+    top: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1500px;
+    height: 140px;
+    border-radius: 10px;
+    /*border: 4px solid #ff0000;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Shared styles for all 5 buttons */
+.other-catalogs-sales,
+.other-catalogs-seasonal-favourites,
+.other-catalogs-best-selling-products2,
+.other-catalogs-limited-time-products,
+.other-catalogs-new-arrival-products {
+    width: 280px;
+    height: 60px;
+    border: 4px solid #d6d4d4;
+    border-radius: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+
+.other-catalogs-sales:hover,
+.other-catalogs-seasonal-favourites:hover,
+.other-catalogs-best-selling-products2:hover,
+.other-catalogs-limited-time-products:hover,
+.other-catalogs-new-arrival-products:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to top, #ffffff, #ececec, #cdcdcd);
+}
+
+
+.product-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    grid-template-rows: repeat(5, auto);   /* 5 rows */
+    gap: 30px;
+    padding: 30px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.products-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.rectangle-template {
+    background-color: #e8e8e8;
+    border: 2px solid #b0b0b0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    gap: 20px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.pagination button:hover {
+    background-color: #f5f5f5;
+}
+
