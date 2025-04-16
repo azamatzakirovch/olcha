@@ -30,8 +30,10 @@
     height: 30px;
     background-color: #000000;
     top: 35px;
-    left: 20px;
+    left: 30px;
 }
+
+
 
 .word-show-new-login{
     position: absolute;
@@ -39,10 +41,20 @@
     height: 30px;
     background-color: #000000;
     top: 35px;
-    left: 15px;
+    left: 30px;
 }
 
 .word-part-to-template-top{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 20px !important;
+    font-family: Arial;
+}
+
+.email-word{
     position: absolute;
     top: 50%;
     left: 10px;
@@ -67,13 +79,28 @@
     font-size: 20px !important;
 }
 
+.gender {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 125px;
+    width: 398px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    background-color: #000000;
+    padding: 0 15px;
+    color: white !important;
+    font-size: 20px !important;
+}
+
 .mini-rectangle-to-template-down{
     position: absolute;
     width: 100px;
     height: 30px;
     background-color: #000000;
     top: 110px;
-    left: 20px;
+    left: 30px;
 }
 
 .word-show-password{
@@ -82,7 +109,7 @@
     height: 30px;
     background-color: #000000;
     top: 35px;
-    left: 15px;
+    left: 30px;
 }
 
 .word-show-gender{
@@ -91,7 +118,7 @@
     height: 30px;
     background-color: #000000;
     top: 110px;
-    left: 20px;
+    left: 15px;
 }
 
 .mini-rectangle-to-template-down-phone{
@@ -101,6 +128,15 @@
     background-color: #000000;
     top: 110px;
     left: 20px;
+}
+
+.word-phone {
+    position: absolute;
+    width: 75px;
+    height: 30px;
+    background-color: #000000;
+    top: 110px;
+    left: 30px;
 }
 
 
@@ -114,6 +150,8 @@
     font-size: 20px !important;
     font-family: Arial;
 }
+
+
 
 .next-template {
     position: absolute;
@@ -169,7 +207,7 @@
     position: absolute;
     left: 1px;
     top: 50px;
-    width: 80px;
+    width: 120px;
     height: 50px;
     border-radius: 10px;
     border: 1px solid #ffffff;
@@ -202,7 +240,7 @@
     position: absolute;
     left: 140px;
     top: 50px;
-    width: 80px;
+    width: 120px;
     height: 50px;
     border-radius: 10px;
     border: 1px solid #ffffff;
@@ -235,7 +273,7 @@
     position: absolute;
     right: 1px;
     top: 50px;
-    width: 80px;
+    width: 120px;
     height: 50px;
     border-radius: 10px;
     border: 1px solid #ffffff;
@@ -251,7 +289,7 @@
     height: 30px;
     background-color: #000000;
     top: 35px;
-    left: 297px;
+    left: 287px;
 }
 
 .word-part-year{
@@ -337,4 +375,14 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+}
+
+
+.finish{
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%);
+    color: #ffffff;
+    font-size: 50px !important;
 }

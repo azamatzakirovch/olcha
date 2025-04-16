@@ -219,7 +219,7 @@ function CreateAccount() {
                                 </div>
 
                                 <input
-                                    className="template-down"
+                                    className="gender"
                                     type="text"
                                     value={sexInput}
                                     onChange={(e) => setSexInput(e.target.value)}
@@ -259,7 +259,7 @@ function CreateAccount() {
                                     onChange={(e) => setEmailInput(e.target.value)}
                                 />
                                 <div className="mini-rectangle-to-template-top">
-                                    <div className="word-part-to-template-top">email</div>
+                                    <div className="email-word">email</div>
                                 </div>
 
                                 <input
@@ -268,7 +268,7 @@ function CreateAccount() {
                                     value={phoneInput}
                                     onChange={(e) => setPhoneInput(e.target.value)}
                                 />
-                                <div className="mini-rectangle-to-template-down-phone">
+                                <div className="word-phone">
                                     <div className="word-part-to-template-down">phone</div>
                                 </div>
 
@@ -330,6 +330,7 @@ function CreateAccount() {
 
                         {step === 5 && (
                             <>
+                                <div className="finish">FINISHED</div>
                                 <div className="finisher" onClick={GoToSignIn}>
                                     <div className="word-part-next">Go To Sign-in</div>
                                 </div>
