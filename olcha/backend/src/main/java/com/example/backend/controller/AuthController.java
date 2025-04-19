@@ -25,7 +25,6 @@ public class AuthController {
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    // ✅ REGISTER
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
         if (userRepository.findByUsername(user.getUsername()) != null) {
@@ -33,26 +32,29 @@ public class AuthController {
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER"); // ✅ Enforce default role always
+
+        if (userRepository.count() == 0) {
+            user.setRole("ADMIN");
+        } else {
+            user.setRole("USER");
+        }
 
         userRepository.save(user);
         return ResponseEntity.ok("User registered successfully");
     }
 
-    // ✅ LOGIN
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
         User existingUser = userRepository.findByUsername(user.getUsername());
 
         if (existingUser != null && passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
-            String token = jwtUtil.generateToken(existingUser.getUsername());
+            String token = jwtUtil.generateToken(existingUser.getUsername(), existingUser.getRole());
             return ResponseEntity.ok(Map.of("token", token));
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
     }
 
-    // ✅ PROFILE (Consider moving to UserController later)
     @GetMapping("/me")
     public ResponseEntity<?> getProfile(@RequestHeader(value = "Authorization", required = false) String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {

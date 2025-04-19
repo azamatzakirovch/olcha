@@ -27,11 +27,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private UserRepository userRepository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
         final String authHeader = request.getHeader("Authorization");
-
         String username = null;
         String jwt = null;
 
@@ -40,22 +40,32 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 username = jwtUtil.extractUsername(jwt);
             } catch (Exception e) {
-                System.out.println("Invalid JWT: " + e.getMessage());
+                System.out.println("❌ Invalid JWT token: " + e.getMessage());
             }
         }
 
+        // Only proceed if username exists and not already authenticated
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             User user = userRepository.findByUsername(username);
+
             if (user != null && jwtUtil.validateToken(jwt, user.getUsername())) {
-                // Assign role as authority
+                String role = user.getRole();
+                if (role == null || role.isBlank()) {
+                    System.out.println("⚠️ User has no role assigned. Defaulting to USER.");
+                    role = "USER";
+                }
+
                 List<SimpleGrantedAuthority> authorities = List.of(
-                        new SimpleGrantedAuthority("ROLE_" + user.getRole())
+                        new SimpleGrantedAuthority("ROLE_" + role)
                 );
 
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(user.getUsername(), null, authorities);
+
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+
+                System.out.println("✅ Authenticated user: " + username + " with role: " + role);
             }
         }
 

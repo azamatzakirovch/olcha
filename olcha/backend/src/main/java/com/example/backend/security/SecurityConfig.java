@@ -20,28 +20,35 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // CSRF disabled for stateless APIs
+                // ✅ Disable CSRF for stateless REST APIs
+                .csrf(csrf -> csrf.disable())
+
+                // ✅ Authorize request rules
                 .authorizeHttpRequests(auth -> auth
-                        // 🔓 Public endpoints
+                        // Public endpoints
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/error").permitAll() // important to prevent 403 on error
+
+                        // Allow public access to some GET endpoints
                         .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/reviews/product/**").permitAll()
 
-                        // 🔐 Admin-only endpoints
+                        // Admin-only routes
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
-                        // 🔐 All other endpoints require authentication
+                        // All other endpoints require authentication
                         .anyRequest().authenticated()
                 )
-                // Stateless session for APIs
+
+                // ✅ No sessions — stateless API only
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        // Register JWT filter before Spring's username/password filter
+        // ✅ Register JWT filter before username/password filter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // AuthenticationManager bean for login logic
+    // ✅ Provides AuthenticationManager for login service
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
