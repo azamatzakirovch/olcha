@@ -9,4 +9,3 @@ public class OrderItemDTO {
     private int quantity;
     private double price;
 }
-
