@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -20,37 +21,44 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // ✅ Disable CSRF for stateless REST APIs
                 .csrf(csrf -> csrf.disable())
-
-                // ✅ Authorize request rules
+                .httpBasic(httpBasic -> httpBasic.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // Public endpoints
+                        // ✅ Public endpoints
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/error").permitAll() // important to prevent 403 on error
+                        .requestMatchers("/error").permitAll()
 
-                        // Allow public access to some GET endpoints
+                        // ✅ Public GET endpoints
                         .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/reviews/product/**").permitAll()
 
-                        // Admin-only routes
+                        // ✅ Swagger / OpenAPI docs
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+
+                        // ✅ Admin-only endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
-                        // All other endpoints require authentication
+                        // ✅ Cart endpoints (USER or ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/cart/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/cart/add").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/cart/clear").hasAnyRole("USER", "ADMIN")
+
+                        // ✅ Everything else must be authenticated
                         .anyRequest().authenticated()
-                )
+                );
 
-                // ✅ No sessions — stateless API only
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
-        // ✅ Register JWT filter before username/password filter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // ✅ Provides AuthenticationManager for login service
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

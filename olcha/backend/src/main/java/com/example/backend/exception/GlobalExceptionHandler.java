@@ -10,17 +10,20 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    // ✅ Catch all RuntimeExceptions (e.g., NullPointerException, IllegalStateException)
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<?> handleRuntime(RuntimeException ex) {
+    public ResponseEntity<Map<String, String>> handleRuntime(RuntimeException ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", ex.getMessage());
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        error.put("error", "A system error occurred: " + ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
+    // ✅ Catch all other Exceptions not handled above
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleGeneric(Exception ex) {
+    public ResponseEntity<Map<String, String>> handleGeneric(Exception ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", "Something went wrong");
-        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        error.put("error", "Something went wrong. Please try again later.");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
+
 }

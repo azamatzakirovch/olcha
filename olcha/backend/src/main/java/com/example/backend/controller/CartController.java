@@ -12,6 +12,7 @@ import com.example.backend.repositories.UserRepository;
 import com.example.backend.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -38,8 +39,16 @@ public class CartController {
     public ResponseEntity<?> addToCart(@RequestBody OrderItemDTO itemDTO,
                                        @RequestHeader("Authorization") String authHeader) {
 
-        String username = jwtUtil.extractUsername(authHeader.substring(7));
-        User user = userRepository.findByUsername(username);
+        String token = extractToken(authHeader);
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid Authorization header");
+        }
+
+        String username = jwtUtil.extractUsername(token);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+        }
 
         Optional<Product> productOpt = productRepository.findById(itemDTO.getProductId());
         if (productOpt.isEmpty()) {
@@ -55,12 +64,12 @@ public class CartController {
             return ResponseEntity.badRequest().body("Requested quantity exceeds available stock");
         }
 
+        User user = optionalUser.get();
         Cart cart = cartRepository.findByUserId(user.getId()).orElseGet(() -> {
             Cart newCart = new Cart(user.getId());
             return cartRepository.save(newCart);
         });
 
-        // Check if item already exists in cart → update quantity
         Optional<OrderItem> existingItem = cart.getItems().stream()
                 .filter(i -> i.getProductId().equals(product.getId()))
                 .findFirst();
@@ -83,10 +92,19 @@ public class CartController {
 
     // 🛒 Get current cart
     @GetMapping
-    public ResponseEntity<CartDTO> getCart(@RequestHeader("Authorization") String authHeader) {
-        String username = jwtUtil.extractUsername(authHeader.substring(7));
-        User user = userRepository.findByUsername(username);
+    public ResponseEntity<?> getCart(@RequestHeader("Authorization") String authHeader) {
+        String token = extractToken(authHeader);
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid Authorization header");
+        }
 
+        String username = jwtUtil.extractUsername(token);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+        }
+
+        User user = optionalUser.get();
         Cart cart = cartRepository.findByUserId(user.getId()).orElseGet(() -> {
             Cart newCart = new Cart(user.getId());
             return cartRepository.save(newCart);
@@ -111,11 +129,28 @@ public class CartController {
     // 🗑️ Clear cart
     @DeleteMapping("/clear")
     public ResponseEntity<?> clearCart(@RequestHeader("Authorization") String authHeader) {
-        String username = jwtUtil.extractUsername(authHeader.substring(7));
-        User user = userRepository.findByUsername(username);
+        String token = extractToken(authHeader);
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or invalid Authorization header");
+        }
 
+        String username = jwtUtil.extractUsername(token);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+        }
+
+        User user = optionalUser.get();
         cartRepository.findByUserId(user.getId()).ifPresent(cartRepository::delete);
 
         return ResponseEntity.ok("Cart cleared successfully");
+    }
+
+    // 🔐 Token extractor helper
+    private String extractToken(String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return null;
+        }
+        return authHeader.substring(7);
     }
 }

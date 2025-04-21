@@ -1,5 +1,7 @@
 package com.example.backend.security;
 
+import com.example.backend.entities.User;
+import com.example.backend.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,11 +13,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.example.backend.entities.User;
-import com.example.backend.repositories.UserRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -46,26 +47,30 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         // Only proceed if username exists and not already authenticated
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            User user = userRepository.findByUsername(username);
+            Optional<User> optionalUser = userRepository.findByUsername(username);
 
-            if (user != null && jwtUtil.validateToken(jwt, user.getUsername())) {
-                String role = user.getRole();
-                if (role == null || role.isBlank()) {
-                    System.out.println("⚠️ User has no role assigned. Defaulting to USER.");
-                    role = "USER";
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+
+                if (jwtUtil.validateToken(jwt, user.getUsername())) {
+                    String role = user.getRole();
+                    if (role == null || role.isBlank()) {
+                        System.out.println("⚠️ User has no role assigned. Defaulting to USER.");
+                        role = "USER";
+                    }
+
+                    List<SimpleGrantedAuthority> authorities = List.of(
+                            new SimpleGrantedAuthority("ROLE_" + role)
+                    );
+
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(user.getUsername(), null, authorities);
+
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+
+                    System.out.println("✅ Authenticated user: " + username + " with role: " + role);
                 }
-
-                List<SimpleGrantedAuthority> authorities = List.of(
-                        new SimpleGrantedAuthority("ROLE_" + role)
-                );
-
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(user.getUsername(), null, authorities);
-
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
-
-                System.out.println("✅ Authenticated user: " + username + " with role: " + role);
             }
         }
 
