@@ -7,17 +7,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Document(collection = "reviews")
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Review {
+
     @Id
     private String id;
 
-    private String userId;
-    private String productId;
-    private int rating; // 1–5
-    private String comment;
-    private Date createdAt;
+    private String userId;     // ID of the user who created the review
+    private String productId;  // ID of the product being reviewed
+
+    private int rating;        // Rating value (1 to 5)
+    private String comment;    // Review text
+
+    private Date createdAt;    // Date when the review was posted
 }

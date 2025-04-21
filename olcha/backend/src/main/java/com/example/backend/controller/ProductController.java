@@ -5,6 +5,9 @@ import com.example.backend.entities.Product;
 import com.example.backend.mapper.ProductMapper;
 import com.example.backend.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,44 +22,66 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping
-    public List<ProductDTO> getAllProducts() {
-        return productRepository.findAll().stream()
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<ProductDTO> products = productRepository.findAll().stream()
                 .map(ProductMapper::toDTO)
                 .collect(Collectors.toList());
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
-    public ProductDTO getProductById(@PathVariable String id) {
-        return productRepository.findById(id)
-                .map(ProductMapper::toDTO)
-                .orElse(null);
+    public ResponseEntity<Object> getProductById(@PathVariable String id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            ProductDTO dto = ProductMapper.toDTO(optionalProduct.get());
+            return ResponseEntity.ok(dto);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
     }
 
     @GetMapping("/search")
-    public List<Product> searchProducts(@RequestParam String keyword) {
-        return productRepository.findByNameContainingIgnoreCase(keyword);
+    public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam String keyword) {
+        List<ProductDTO> results = productRepository.findByNameContainingIgnoreCase(keyword).stream()
+                .map(ProductMapper::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(results);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ProductDTO addProduct(@RequestBody ProductDTO dto) {
+    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO dto) {
         Product product = ProductMapper.toEntity(dto);
-        return ProductMapper.toDTO(productRepository.save(product));
+        Product saved = productRepository.save(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ProductMapper.toDTO(saved));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    public ProductDTO updateProduct(@PathVariable String id, @RequestBody ProductDTO dto) {
-        return productRepository.findById(id).map(existing -> {
-            existing.setName(dto.getName());
-            existing.setDescription(dto.getDescription());
-            existing.setPrice(dto.getPrice());
-            existing.setStock(dto.getStock());
-            existing.setImageUrl(dto.getImageUrl());
-            return ProductMapper.toDTO(productRepository.save(existing));
-        }).orElse(null);
+    public ResponseEntity<Object> updateProduct(@PathVariable String id, @RequestBody ProductDTO dto) {
+        Optional<Product> optional = productRepository.findById(id);
+        if (optional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
+
+        Product existing = optional.get();
+        existing.setName(dto.getName());
+        existing.setDescription(dto.getDescription());
+        existing.setPrice(dto.getPrice());
+        existing.setStock(dto.getStock());
+        existing.setImageUrl(dto.getImageUrl());
+
+        Product updated = productRepository.save(existing);
+        return ResponseEntity.ok(ProductMapper.toDTO(updated));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable String id) {
+    public ResponseEntity<String> deleteProduct(@PathVariable String id) {
+        if (!productRepository.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
         productRepository.deleteById(id);
+        return ResponseEntity.ok("Product deleted successfully");
     }
 }

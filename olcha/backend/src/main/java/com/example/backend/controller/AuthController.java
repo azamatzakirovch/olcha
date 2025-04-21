@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,33 +24,37 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()) != null) {
+    public ResponseEntity<?> register(@RequestBody User user) {
+        if (user.getUsername() == null || user.getPassword() == null || user.getEmail() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing required fields");
+        }
+
+        Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
+        if (existingUser.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        if (userRepository.count() == 0) {
-            user.setRole("ADMIN");
-        } else {
-            user.setRole("USER");
-        }
+        user.setRole(userRepository.count() == 0 ? "ADMIN" : "USER");
 
         userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        User existingUser = userRepository.findByUsername(user.getUsername());
+        Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
 
-        if (existingUser != null && passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
-            String token = jwtUtil.generateToken(existingUser.getUsername(), existingUser.getRole());
-            return ResponseEntity.ok(Map.of("token", token));
+        if (optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+            if (passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
+                String token = jwtUtil.generateToken(existingUser.getUsername(), existingUser.getRole());
+                return ResponseEntity.ok(Map.of("token", token));
+            }
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
@@ -63,10 +68,10 @@ public class AuthController {
 
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
-        User user = userRepository.findByUsername(username);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
 
-        if (user != null) {
-            return ResponseEntity.ok(UserMapper.toDTO(user));
+        if (optionalUser.isPresent()) {
+            return ResponseEntity.ok(UserMapper.toDTO(optionalUser.get()));
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
