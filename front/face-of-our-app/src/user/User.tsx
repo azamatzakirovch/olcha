@@ -6,6 +6,7 @@ import charging_area from './../../public/products/airpods-charger.jpg'
 import productsData from "./../json-uploader/products.json"
 import buy from "./../../public/buy.png"
 
+import Footer from "./../footer/Footer.tsx"
 
 const User = () => {
 
@@ -252,8 +253,8 @@ const User = () => {
                             </button>
                         </div>
                     )}
-
                 </div>
+            <Footer />
 
         </>
     )
