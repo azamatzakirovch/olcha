@@ -17,7 +17,8 @@
     /*border: 1px solid #ff0000;*/
     top: 50%;
     transform: translateY(-50%);
-    right: 5px;
+    right: 40px;
+    cursor: pointer;
 }
 
 .user-photo{
@@ -58,6 +59,8 @@
 .catalogue:hover{
     transform: translateY(-50%) scale(1.09);
 }
+
+
 
 .offices{
     top: 50%;
@@ -461,3 +464,5 @@
 .content-area {
     flex-grow: 1;
 }
+
+

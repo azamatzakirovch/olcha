@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Guest {
 
     @Id
     private String id;

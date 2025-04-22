@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.entities.Review;
-import com.example.backend.entities.User;
+import com.example.backend.entities.Guest;
 import com.example.backend.repositories.ReviewRepository;
 import com.example.backend.repositories.UserRepository;
 import com.example.backend.security.JwtUtil;
@@ -33,12 +33,12 @@ public class ReviewController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
 
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid user");
         }
 
-        User user = optionalUser.get();
+        Guest user = optionalUser.get();
         review.setUserId(user.getId());
         review.setCreatedAt(new Date());
 
@@ -58,7 +58,7 @@ public class ReviewController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
 
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid user");
         }
@@ -68,7 +68,7 @@ public class ReviewController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Review not found");
         }
 
-        User user = optionalUser.get();
+        Guest user = optionalUser.get();
         Review review = optionalReview.get();
 
         if (!review.getUserId().equals(user.getId()) && !"ADMIN".equals(user.getRole())) {
@@ -86,7 +86,7 @@ public class ReviewController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
 
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid user");
         }
@@ -96,7 +96,7 @@ public class ReviewController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Review not found");
         }
 
-        User user = optionalUser.get();
+        Guest user = optionalUser.get();
         Review review = optionalReview.get();
 
         if (!review.getUserId().equals(user.getId()) && !"ADMIN".equals(user.getRole())) {

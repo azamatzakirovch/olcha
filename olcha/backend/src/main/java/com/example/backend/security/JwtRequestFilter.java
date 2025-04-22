@@ -1,6 +1,6 @@
 package com.example.backend.security;
 
-import com.example.backend.entities.User;
+import com.example.backend.entities.Guest;
 import com.example.backend.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -47,15 +47,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         // Only proceed if username exists and not already authenticated
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            Optional<User> optionalUser = userRepository.findByUsername(username);
+            Optional<Guest> optionalUser = userRepository.findByUsername(username);
 
             if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
+                Guest user = optionalUser.get();
 
                 if (jwtUtil.validateToken(jwt, user.getUsername())) {
                     String role = user.getRole();
                     if (role == null || role.isBlank()) {
-                        System.out.println("⚠️ User has no role assigned. Defaulting to USER.");
+                        System.out.println("⚠️ Guest has no role assigned. Defaulting to USER.");
                         role = "USER";
                     }
 

@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.UserDTO;
-import com.example.backend.entities.User;
+import com.example.backend.entities.Guest;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.repositories.UserRepository;
 import com.example.backend.security.JwtUtil;
@@ -31,13 +31,13 @@ public class UserController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
 
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isPresent()) {
             UserDTO dto = UserMapper.toDTO(optionalUser.get());
             return ResponseEntity.ok(dto);
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Guest not found");
     }
 
     // ✅ Update current user (username or email only)
@@ -47,12 +47,12 @@ public class UserController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
 
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Guest not found");
         }
 
-        User user = optionalUser.get();
+        Guest user = optionalUser.get();
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         userRepository.save(user);
@@ -66,13 +66,13 @@ public class UserController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
 
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Guest not found");
         }
 
         userRepository.delete(optionalUser.get());
-        return ResponseEntity.ok("User deleted successfully");
+        return ResponseEntity.ok("Guest deleted successfully");
     }
 
     // ✅ Admin: get all users
@@ -89,10 +89,10 @@ public class UserController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getUserById(@PathVariable String id) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<Guest> user = userRepository.findById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(UserMapper.toDTO(user.get()));
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Guest not found");
     }
 }

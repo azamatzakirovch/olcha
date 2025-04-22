@@ -18,7 +18,6 @@ const User = () => {
     const startIndex = currentPage * productsPerPage;
     const visibleProducts = productsData.slice(startIndex, startIndex + productsPerPage);
 
-
     return (
         <>
             <div className="navigation-bar">
@@ -28,9 +27,13 @@ const User = () => {
                 </div>
 
                 <div className="border-for-menu-functions">
-                    <div className="catalogue">
+                    <div className="catalogue"
+
+                    >
                         Catalogue
                     </div>
+
+
 
                     <div className="offices">
                         Offices

@@ -5,7 +5,7 @@ import com.example.backend.dto.OrderItemDTO;
 import com.example.backend.entities.Cart;
 import com.example.backend.entities.OrderItem;
 import com.example.backend.entities.Product;
-import com.example.backend.entities.User;
+import com.example.backend.entities.Guest;
 import com.example.backend.repositories.CartRepository;
 import com.example.backend.repositories.ProductRepository;
 import com.example.backend.repositories.UserRepository;
@@ -45,9 +45,9 @@ public class CartController {
         }
 
         String username = jwtUtil.extractUsername(token);
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Guest not found");
         }
 
         Optional<Product> productOpt = productRepository.findById(itemDTO.getProductId());
@@ -64,7 +64,7 @@ public class CartController {
             return ResponseEntity.badRequest().body("Requested quantity exceeds available stock");
         }
 
-        User user = optionalUser.get();
+        Guest user = optionalUser.get();
         Cart cart = cartRepository.findByUserId(user.getId()).orElseGet(() -> {
             Cart newCart = new Cart(user.getId());
             return cartRepository.save(newCart);
@@ -99,12 +99,12 @@ public class CartController {
         }
 
         String username = jwtUtil.extractUsername(token);
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Guest not found");
         }
 
-        User user = optionalUser.get();
+        Guest user = optionalUser.get();
         Cart cart = cartRepository.findByUserId(user.getId()).orElseGet(() -> {
             Cart newCart = new Cart(user.getId());
             return cartRepository.save(newCart);
@@ -135,12 +135,12 @@ public class CartController {
         }
 
         String username = jwtUtil.extractUsername(token);
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<Guest> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Guest not found");
         }
 
-        User user = optionalUser.get();
+        Guest user = optionalUser.get();
         cartRepository.findByUserId(user.getId()).ifPresent(cartRepository::delete);
 
         return ResponseEntity.ok("Cart cleared successfully");

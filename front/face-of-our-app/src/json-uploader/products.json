@@ -12,7 +12,10 @@
     "seasonalFavorite": true,
     "bestSelling": true,
     "limitedTime": true,
-    "newArrival": false
+    "newArrival": false,
+    "written-comments" : [],
+    "main-catalogue": "Electronics",
+    "mini-connection-to-main-catalogue": "Audio"
   },
   {
     "id": 2,
