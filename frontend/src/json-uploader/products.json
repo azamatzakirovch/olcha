@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "photo": "./../../public/products/air-poods-max.jpg",
+    "photo": "products/air-poods-max.jpg",
     "name": "AirPods Max",
     "price": "7000000",
     "count": "850",
@@ -19,7 +19,7 @@
   },
   {
     "id": 2,
-    "photo": "./../../public/products/speaker.jpg",
+    "photo": "products/speaker.jpg",
     "name": "Microlab Speakers",
     "price": "3200000",
     "count": "430",
@@ -34,7 +34,7 @@
   },
   {
     "id": 3,
-    "photo": "./../../public/products/gorilla.jpg",
+    "photo": "products/gorilla.jpg",
     "name": "Gorilla Energy",
     "price": "12000",
     "count": "5200",
@@ -49,7 +49,7 @@
   },
   {
     "id": 4,
-    "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+    "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
     "name": "iPhone 11 Pro Max",
     "price": "10000000",
     "count": "650",
@@ -64,7 +64,7 @@
   },
   {
     "id": 5,
-    "photo": "./../../public/products/100028857487b6.jpg.webp",
+    "photo": "products/100028857487b6.jpg.webp",
     "name": "MacBook Air M2 2022",
     "price": "13000000",
     "count": "1200",
@@ -79,7 +79,7 @@
   },
   {
     "id": 6,
-    "photo": "./../../public/products/air-poods-max.jpg",
+    "photo": "products/air-poods-max.jpg",
     "name": "AirPods Max",
     "price": "7000000",
     "count": "850",
@@ -94,7 +94,7 @@
   },
   {
     "id": 7,
-    "photo": "./../../public/products/speaker.jpg",
+    "photo": "products/speaker.jpg",
     "name": "Microlab Speakers",
     "price": "3200000",
     "count": "430",
@@ -109,7 +109,7 @@
   },
   {
     "id": 8,
-    "photo": "./../../public/products/100028857487b6.jpg.webp",
+    "photo": "products/100028857487b6.jpg.webp",
     "name": "MacBook Air M2 2022",
     "price": "13000000",
     "count": "1200",
@@ -124,7 +124,7 @@
   },
   {
     "id": 9,
-    "photo": "./../../public/products/gorilla.jpg",
+    "photo": "products/gorilla.jpg",
     "name": "Gorilla Energy",
     "price": "12000",
     "count": "5200",
@@ -139,7 +139,7 @@
   },
   {
     "id": 10,
-    "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+    "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
     "name": "iPhone 11 Pro Max",
     "price": "10000000",
     "count": "650",
@@ -154,7 +154,7 @@
   },
   {
     "id": 11,
-    "photo": "./../../public/products/air-poods-max.jpg",
+    "photo": "products/air-poods-max.jpg",
     "name": "AirPods Max",
     "price": "7000000",
     "count": "850",
@@ -169,7 +169,7 @@
   },
   {
     "id": 12,
-    "photo": "./../../public/products/100028857487b6.jpg.webp",
+    "photo": "products/100028857487b6.jpg.webp",
     "name": "MacBook Air M2 2022",
     "price": "13000000",
     "count": "1200",
@@ -184,7 +184,7 @@
   },
   {
     "id": 13,
-    "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+    "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
     "name": "iPhone 11 Pro Max",
     "price": "10000000",
     "count": "650",
@@ -199,7 +199,7 @@
   },
   {
     "id": 14,
-    "photo": "./../../public/products/gorilla.jpg",
+    "photo": "products/gorilla.jpg",
     "name": "Gorilla Energy",
     "price": "12000",
     "count": "5200",
@@ -214,7 +214,7 @@
   },
   {
     "id": 15,
-    "photo": "./../../public/products/speaker.jpg",
+    "photo": "products/speaker.jpg",
     "name": "Microlab Speakers",
     "price": "3200000",
     "count": "430",
@@ -229,7 +229,7 @@
   },
     {
       "id": 16,
-      "photo": "./../../public/products/air-poods-max.jpg",
+      "photo": "products/air-poods-max.jpg",
       "name": "AirPods Max",
       "price": "7000000",
       "count": "850",
@@ -244,7 +244,7 @@
     },
     {
       "id": 17,
-      "photo": "./../../public/products/speaker.jpg",
+      "photo": "products/speaker.jpg",
       "name": "Microlab Speakers",
       "price": "3200000",
       "count": "430",
@@ -259,7 +259,7 @@
     },
     {
       "id": 18,
-      "photo": "./../../public/products/gorilla.jpg",
+      "photo": "products/gorilla.jpg",
       "name": "Gorilla Energy",
       "price": "12000",
       "count": "5200",
@@ -274,7 +274,7 @@
     },
     {
       "id": 19,
-      "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+      "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
       "name": "iPhone 11 Pro Max",
       "price": "10000000",
       "count": "650",
@@ -289,7 +289,7 @@
     },
     {
       "id": 20,
-      "photo": "./../../public/products/100028857487b6.jpg.webp",
+      "photo": "products/100028857487b6.jpg.webp",
       "name": "MacBook Air M2 2022",
       "price": "13000000",
       "count": "1200",
@@ -304,7 +304,7 @@
     },
     {
       "id": 21,
-      "photo": "./../../public/products/speaker.jpg",
+      "photo": "products/speaker.jpg",
       "name": "Microlab Speakers",
       "price": "3200000",
       "count": "430",
@@ -319,7 +319,7 @@
     },
     {
       "id": 22,
-      "photo": "./../../public/products/gorilla.jpg",
+      "photo": "products/gorilla.jpg",
       "name": "Gorilla Energy",
       "price": "12000",
       "count": "5200",
@@ -334,7 +334,7 @@
     },
     {
       "id": 23,
-      "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+      "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
       "name": "iPhone 11 Pro Max",
       "price": "10000000",
       "count": "650",
@@ -349,7 +349,7 @@
     },
     {
       "id": 24,
-      "photo": "./../../public/products/100028857487b6.jpg.webp",
+      "photo": "products/100028857487b6.jpg.webp",
       "name": "MacBook Air M2 2022",
       "price": "13000000",
       "count": "1200",
@@ -364,7 +364,7 @@
     },
     {
       "id": 25,
-      "photo": "./../../public/products/air-poods-max.jpg",
+      "photo": "products/air-poods-max.jpg",
       "name": "AirPods Max",
       "price": "7000000",
       "count": "850",
@@ -379,7 +379,7 @@
     },
     {
       "id": 26,
-      "photo": "./../../public/products/air-poods-max.jpg",
+      "photo": "products/air-poods-max.jpg",
       "name": "AirPods Max",
       "price": "7000000",
       "count": "850",
@@ -394,7 +394,7 @@
     },
     {
       "id": 27,
-      "photo": "./../../public/products/speaker.jpg",
+      "photo": "products/speaker.jpg",
       "name": "Microlab Speakers",
       "price": "3200000",
       "count": "430",
@@ -409,7 +409,7 @@
     },
     {
       "id": 28,
-      "photo": "./../../public/products/gorilla.jpg",
+      "photo": "products/gorilla.jpg",
       "name": "Gorilla Energy",
       "price": "12000",
       "count": "5200",
@@ -424,7 +424,7 @@
     },
     {
       "id": 29,
-      "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+      "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
       "name": "iPhone 11 Pro Max",
       "price": "10000000",
       "count": "650",
@@ -439,7 +439,7 @@
     },
     {
       "id": 30,
-      "photo": "./../../public/products/100028857487b6.jpg.webp",
+      "photo": "products/100028857487b6.jpg.webp",
       "name": "MacBook Air M2 2022",
       "price": "13000000",
       "count": "1200",
@@ -454,7 +454,7 @@
     },
     {
       "id": 31,
-      "photo": "./../../public/products/air-poods-max.jpg",
+      "photo": "products/air-poods-max.jpg",
       "name": "AirPods Max",
       "price": "7000000",
       "count": "850",
@@ -469,7 +469,7 @@
     },
   {
     "id": 32,
-    "photo": "./../../public/products/speaker.jpg",
+    "photo": "products/speaker.jpg",
     "name": "Microlab Speakers",
     "price": "3200000",
     "count": "430",
@@ -484,7 +484,7 @@
   },
   {
     "id": 33,
-    "photo": "./../../public/products/gorilla.jpg",
+    "photo": "products/gorilla.jpg",
     "name": "Gorilla Energy",
     "price": "12000",
     "count": "5200",
@@ -499,7 +499,7 @@
   },
   {
     "id": 34,
-    "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+    "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
     "name": "iPhone 11 Pro Max",
     "price": "10000000",
     "count": "650",
@@ -514,7 +514,7 @@
   },
   {
     "id": 35,
-    "photo": "./../../public/products/100028857487b6.jpg.webp",
+    "photo": "products/100028857487b6.jpg.webp",
     "name": "MacBook Air M2 2022",
     "price": "13000000",
     "count": "1200",
@@ -529,7 +529,7 @@
   },
   {
     "id": 36,
-    "photo": "./../../public/products/air-poods-max.jpg",
+    "photo": "products/air-poods-max.jpg",
     "name": "AirPods Max",
     "price": "7000000",
     "count": "850",
@@ -544,7 +544,7 @@
   },
   {
     "id": 37,
-    "photo": "./../../public/products/speaker.jpg",
+    "photo": "products/speaker.jpg",
     "name": "Microlab Speakers",
     "price": "3200000",
     "count": "430",
@@ -559,7 +559,7 @@
   },
   {
     "id": 38,
-    "photo": "./../../public/products/gorilla.jpg",
+    "photo": "products/gorilla.jpg",
     "name": "Gorilla Energy",
     "price": "12000",
     "count": "5200",
@@ -574,7 +574,7 @@
   },
   {
     "id": 39,
-    "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+    "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
     "name": "iPhone 11 Pro Max",
     "price": "10000000",
     "count": "650",
@@ -589,7 +589,7 @@
   },
   {
     "id": 40,
-    "photo": "./../../public/products/100028857487b6.jpg.webp",
+    "photo": "products/100028857487b6.jpg.webp",
     "name": "MacBook Air M2 2022",
     "price": "13000000",
     "count": "1200",
@@ -604,7 +604,7 @@
   },
   {
     "id": 41,
-    "photo": "./../../public/products/air-poods-max.jpg",
+    "photo": "products/air-poods-max.jpg",
     "name": "AirPods Max",
     "price": "7000000",
     "count": "850",
@@ -619,7 +619,7 @@
   },
   {
     "id": 42,
-    "photo": "./../../public/products/speaker.jpg",
+    "photo": "products/speaker.jpg",
     "name": "Microlab Speakers",
     "price": "3200000",
     "count": "430",
@@ -634,7 +634,7 @@
   },
   {
     "id": 43,
-    "photo": "./../../public/products/gorilla.jpg",
+    "photo": "products/gorilla.jpg",
     "name": "Gorilla Energy",
     "price": "12000",
     "count": "5200",
@@ -649,7 +649,7 @@
   },
   {
     "id": 44,
-    "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+    "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
     "name": "iPhone 11 Pro Max",
     "price": "10000000",
     "count": "650",
@@ -664,7 +664,7 @@
   },
   {
     "id": 45,
-    "photo": "./../../public/products/100028857487b6.jpg.webp",
+    "photo": "products/100028857487b6.jpg.webp",
     "name": "MacBook Air M2 2022",
     "price": "13000000",
     "count": "1200",
@@ -679,7 +679,7 @@
   },
   {
     "id": 46,
-    "photo": "./../../public/products/air-poods-max.jpg",
+    "photo": "products/air-poods-max.jpg",
     "name": "AirPods Max",
     "price": "7000000",
     "count": "850",
@@ -694,7 +694,7 @@
   },
   {
     "id": 47,
-    "photo": "./../../public/products/speaker.jpg",
+    "photo": "products/speaker.jpg",
     "name": "Microlab Speakers",
     "price": "3200000",
     "count": "430",
@@ -709,7 +709,7 @@
   },
   {
     "id": 48,
-    "photo": "./../../public/products/gorilla.jpg",
+    "photo": "products/gorilla.jpg",
     "name": "Gorilla Energy",
     "price": "12000",
     "count": "5200",
@@ -724,7 +724,7 @@
   },
   {
     "id": 49,
-    "photo": "./../../public/products/apple-iphone-11-pro-max-silver-05.jpg",
+    "photo": "products/apple-iphone-11-pro-max-silver-05.jpg",
     "name": "iPhone 11 Pro Max",
     "price": "10000000",
     "count": "650",
@@ -739,7 +739,7 @@
   },
   {
     "id": 50,
-    "photo": "./../../public/products/100028857487b6.jpg.webp",
+    "photo": "products/100028857487b6.jpg.webp",
     "name": "MacBook Air M2 2022",
     "price": "13000000",
     "count": "1200",

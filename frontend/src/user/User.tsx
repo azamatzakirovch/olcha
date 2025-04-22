@@ -1,7 +1,9 @@
 import {useState} from "react";
 import "./User.css"
-import demo_user_photo from "./../../public/user-account.png"
-import speaker from './../../public/products/airpods-speaker.jpg'
+// import demo_user_photo from "./../../public/user-account.png"
+import azamatzakirovch from "./../../public/azamatzakirovch.jpg"
+import speaker_right from './../../public/products/speaker-l.png'
+import speaker_left from './../../public/products/speaker-r.png'
 import charging_area from './../../public/products/airpods-charger.jpg'
 import productsData from "./../json-uploader/products.json"
 import buy from "./../../public/buy.png"
@@ -23,7 +25,11 @@ const User = () => {
             <div className="navigation-bar">
 
                 <div className="border-to-user-account">
-                    <img src={demo_user_photo} alt="demo_user_photo" className="user-photo" />
+                    <img src={azamatzakirovch} alt="demo_user_photo" className="user-photo" />
+                </div>
+
+                <div className="border-to-username-and-name">
+
                 </div>
 
                 <div className="border-for-menu-functions">
@@ -53,9 +59,14 @@ const User = () => {
 
             <div>
                 <div className="top-good-of-week-border">
-                    <div className="border-for-photo-of-top-good-left-side">
-                        <img src={speaker} alt="speaker" className="photo-settings" />
+                    <div className="border-for-speaker-left-side">
+                        <img src={speaker_left} alt="speaker-left" className="photo-settings" />
                     </div>
+
+                    <div className="border-for-speaker-right-side">
+                        <img src={speaker_right} alt="speaker-right" className="photo-settings" />
+                    </div>
+
                     <div className="border-for-photo-of-top-good-right-side">
                         <img src={charging_area} alt="charging_area" className="photo-settings" />
                     </div>
