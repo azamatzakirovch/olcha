@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.UserDTO;
-import com.example.backend.entities.Guest;
+import com.example.backend.entities.User;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.repositories.UserRepository;
 import com.example.backend.security.JwtUtil;
@@ -28,12 +28,12 @@ public class AuthController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Guest user) {
+    public ResponseEntity<?> register(@RequestBody User user) {
         if (user.getUsername() == null || user.getPassword() == null || user.getEmail() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing required fields");
         }
 
-        Optional<Guest> existingUser = userRepository.findByUsername(user.getUsername());
+        Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
         if (existingUser.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
         }
@@ -42,15 +42,15 @@ public class AuthController {
         user.setRole(userRepository.count() == 0 ? "ADMIN" : "USER");
 
         userRepository.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Guest registered successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Guest user) {
-        Optional<Guest> optionalUser = userRepository.findByUsername(user.getUsername());
+    public ResponseEntity<?> login(@RequestBody User user) {
+        Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
 
         if (optionalUser.isPresent()) {
-            Guest existingUser = optionalUser.get();
+            User existingUser = optionalUser.get();
             if (passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
                 String token = jwtUtil.generateToken(existingUser.getUsername(), existingUser.getRole());
                 return ResponseEntity.ok(Map.of("token", token));
@@ -68,12 +68,12 @@ public class AuthController {
 
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
-        Optional<Guest> optionalUser = userRepository.findByUsername(username);
+        Optional<User> optionalUser = userRepository.findByUsername(username);
 
         if (optionalUser.isPresent()) {
             return ResponseEntity.ok(UserMapper.toDTO(optionalUser.get()));
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Guest not found");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
     }
 }

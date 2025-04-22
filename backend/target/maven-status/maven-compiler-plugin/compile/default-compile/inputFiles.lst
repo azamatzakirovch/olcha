@@ -15,7 +15,7 @@ C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backen
 C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\entities\OrderItem.java
 C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\entities\Product.java
 C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\entities\Review.java
-C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\entities\Guest.java
+C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\entities\User.java
 C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\exception\GlobalExceptionHandler.java
 C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\mapper\OrderMapper.java
 C:\Users\Setup\IdeaProjects\olcha\olcha\backend\src\main\java\com\example\backend\mapper\ProductMapper.java
